@@ -23,6 +23,8 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+          git rm -r --cached 'artifacts/base_model/base_model.h5'
+
           dvc repro
 
           echo "# REPORTS" >> report.md

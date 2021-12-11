@@ -1,0 +1,304 @@
+[2021-12-12 00:08:46,986: INFO: stage_01_load_save]: 
+********************
+[2021-12-12 00:08:46,987: INFO: stage_01_load_save]: >>>>> stage 01 started <<<<<
+[2021-12-12 00:08:47,001: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 00:08:47,007: INFO: common]: created directory at: artifacts/data
+[2021-12-12 00:09:01,993: INFO: stage_01_load_save]: >>>>> stage 01 completed!<<<<<
+
+[2021-12-12 00:18:00,184: INFO: stage_02_prepare_model]: 
+********************
+[2021-12-12 00:18:00,185: INFO: stage_02_prepare_model]: >>>>> stage 02 started <<<<<
+[2021-12-12 00:18:00,198: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 00:18:00,212: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 00:18:00,219: INFO: common]: created directory at: artifacts/base_model
+[2021-12-12 00:18:02,372: INFO: model]: custom model is saved at artifacts/base_model/base_model.h5
+[2021-12-12 00:18:02,372: INFO: model]: custom model is compiled and ready to be trained
+[2021-12-12 00:18:02,380: INFO: stage_02_prepare_model]: full model summary: 
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 28, 28, 64)        640       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 14, 14, 64)       0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 14, 14, 128)       73856     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 14, 14, 128)       147584    
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 7, 7, 128)        0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 7, 7, 256)         295168    
+                                                                 
+ conv2d_4 (Conv2D)           (None, 7, 7, 256)         590080    
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 3, 3, 256)        0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 2304)              0         
+                                                                 
+ dense (Dense)               (None, 128)               295040    
+                                                                 
+ dropout (Dropout)           (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_1 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_2 (Dense)             (None, 10)                650       
+                                                                 
+=================================================================
+Total params: 1,411,274
+Trainable params: 1,411,274
+Non-trainable params: 0
+_________________________________________________________________
+
+[2021-12-12 00:18:02,536: INFO: stage_02_prepare_model]: >>>>> stage 02 completed!<<<<<
+
+[2021-12-12 00:21:57,308: INFO: stage_03_prepare_callbacks]: 
+********************
+[2021-12-12 00:21:57,309: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 started <<<<<
+[2021-12-12 00:21:57,309: ERROR: stage_03_prepare_callbacks]: 'Namespace' object has no attribute 'params'
+Traceback (most recent call last):
+  File "src/stage_03_prepare_callbacks.py", line 44, in <module>
+    prepare_callbacks(config_path=parsed_args.config, params_path=parsed_args.params)
+AttributeError: 'Namespace' object has no attribute 'params'
+[2021-12-12 00:27:31,897: INFO: stage_03_prepare_callbacks]: 
+********************
+[2021-12-12 00:27:31,898: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 started <<<<<
+[2021-12-12 00:27:31,911: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 00:27:31,918: INFO: common]: created directory at: artifacts/tensorboard_log_dir
+[2021-12-12 00:27:31,923: INFO: common]: created directory at: artifacts/checkpoints
+[2021-12-12 00:27:31,930: INFO: common]: created directory at: artifacts/callbacks
+[2021-12-12 00:27:31,945: INFO: callbacks]: Saved tensorboard callback to artifacts/callbacks/tensorboard_cb.cb
+[2021-12-12 00:27:31,955: INFO: callbacks]: Saved checkpoint callback to artifacts/callbacks/checkpoint_cb.cb
+[2021-12-12 00:27:31,955: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 completed!<<<<<
+
+[2021-12-12 00:33:21,922: INFO: stage_04_train_model]: 
+********************
+[2021-12-12 00:33:21,923: INFO: stage_04_train_model]: >>>>> stage 04 started <<<<<
+[2021-12-12 00:33:21,937: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 00:33:21,947: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 00:33:21,955: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 00:33:21,956: ERROR: stage_04_train_model]: 'UPDATED_BASE_MODEL_NAME'
+Traceback (most recent call last):
+  File "src/stage_04_train_model.py", line 77, in <module>
+    train_model(config_path=parsed_args.config, params_path=parsed_args.params)
+  File "src/stage_04_train_model.py", line 28, in train_model
+    untrained_full_model_path = os.path.join(artifacts_dir, artifacts["BASE_MODEL_DIR"], artifacts["UPDATED_BASE_MODEL_NAME"])
+KeyError: 'UPDATED_BASE_MODEL_NAME'
+[2021-12-12 00:36:28,091: INFO: stage_04_train_model]: 
+********************
+[2021-12-12 00:36:28,092: INFO: stage_04_train_model]: >>>>> stage 04 started <<<<<
+[2021-12-12 00:36:28,100: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 00:36:28,104: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 00:36:28,108: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 00:36:30,292: INFO: model]: untrained model is read from artifacts/base_model/base_model.h5
+[2021-12-12 00:36:30,318: INFO: callbacks]: saved callbacks are loaded from artifacts/callbacks
+[2021-12-12 00:36:36,022: INFO: data_management]: data is loaded.
+[2021-12-12 00:36:37,409: INFO: data_management]: data is loaded.
+[2021-12-12 00:36:37,648: INFO: data_management]: data is preprocessed.
+[2021-12-12 00:36:37,651: INFO: data_management]: data is one-hot encoded.
+[2021-12-12 01:11:53,142: INFO: stage_04_train_model]: training completed
+[2021-12-12 01:11:53,147: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 01:11:53,148: ERROR: stage_04_train_model]: 'TRAINED_MODEL_NAME'
+Traceback (most recent call last):
+  File "src/stage_04_train_model.py", line 77, in <module>
+    train_model(config_path=parsed_args.config, params_path=parsed_args.params)
+  File "src/stage_04_train_model.py", line 63, in train_model
+    model_file_path = os.path.join(trained_model_dir, artifacts["TRAINED_MODEL_NAME"])
+KeyError: 'TRAINED_MODEL_NAME'
+[2021-12-12 01:18:18,878: INFO: stage_04_train_model]: 
+********************
+[2021-12-12 01:18:18,879: INFO: stage_04_train_model]: >>>>> stage 04 started <<<<<
+[2021-12-12 01:18:18,884: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 01:18:18,889: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 01:18:18,895: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 01:18:20,380: INFO: model]: untrained model is read from artifacts/base_model/base_model.h5
+[2021-12-12 01:18:20,391: INFO: callbacks]: saved callbacks are loaded from artifacts/callbacks
+[2021-12-12 01:18:22,665: INFO: data_management]: data is loaded.
+[2021-12-12 01:18:23,065: INFO: data_management]: data is loaded.
+[2021-12-12 01:18:23,256: INFO: data_management]: data is preprocessed.
+[2021-12-12 01:18:23,258: INFO: data_management]: data is one-hot encoded.
+[2021-12-12 01:53:02,460: INFO: stage_04_train_model]: training completed
+[2021-12-12 01:53:02,465: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 01:53:02,716: INFO: stage_04_train_model]: trained model is saved at: artifacts/trained_model/trained_model.h5
+[2021-12-12 01:53:02,719: INFO: stage_04_train_model]: >>>>> stage 04 completed!<<<<<
+
+[2021-12-12 02:01:25,005: INFO: stage_01_load_save]: 
+********************
+[2021-12-12 02:01:25,006: INFO: stage_01_load_save]: >>>>> stage 01 started <<<<<
+[2021-12-12 02:01:25,012: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:01:25,016: INFO: common]: created directory at: artifacts/data
+[2021-12-12 02:01:25,024: INFO: stage_01_load_save]: >>>>> stage 01 completed!<<<<<
+
+[2021-12-12 02:07:37,467: INFO: stage_02_prepare_model]: 
+********************
+[2021-12-12 02:07:37,467: INFO: stage_02_prepare_model]: >>>>> stage 02 started <<<<<
+[2021-12-12 02:07:37,472: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:07:37,478: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 02:07:37,483: INFO: common]: created directory at: artifacts/base_model
+[2021-12-12 02:07:39,158: INFO: model]: custom model is saved at artifacts/base_model/base_model.h5
+[2021-12-12 02:07:39,158: INFO: model]: custom model is compiled and ready to be trained
+[2021-12-12 02:07:39,167: INFO: stage_02_prepare_model]: full model summary: 
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 28, 28, 64)        640       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 14, 14, 64)       0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 14, 14, 128)       73856     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 14, 14, 128)       147584    
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 7, 7, 128)        0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 7, 7, 256)         295168    
+                                                                 
+ conv2d_4 (Conv2D)           (None, 7, 7, 256)         590080    
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 3, 3, 256)        0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 2304)              0         
+                                                                 
+ dense (Dense)               (None, 128)               295040    
+                                                                 
+ dropout (Dropout)           (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_1 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_2 (Dense)             (None, 10)                650       
+                                                                 
+=================================================================
+Total params: 1,411,274
+Trainable params: 1,411,274
+Non-trainable params: 0
+_________________________________________________________________
+
+[2021-12-12 02:07:39,329: INFO: stage_02_prepare_model]: >>>>> stage 02 completed!<<<<<
+
+[2021-12-12 02:08:50,829: INFO: stage_01_load_save]: 
+********************
+[2021-12-12 02:08:50,829: INFO: stage_01_load_save]: >>>>> stage 01 started <<<<<
+[2021-12-12 02:08:50,834: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:08:50,839: INFO: common]: created directory at: artifacts/data
+[2021-12-12 02:09:03,031: INFO: stage_01_load_save]: >>>>> stage 01 completed!<<<<<
+
+[2021-12-12 02:10:54,715: INFO: stage_03_prepare_callbacks]: 
+********************
+[2021-12-12 02:10:54,715: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 started <<<<<
+[2021-12-12 02:10:54,721: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:10:54,725: INFO: common]: created directory at: artifacts/tensorboard_log_dir
+[2021-12-12 02:10:54,730: INFO: common]: created directory at: artifacts/checkpoints
+[2021-12-12 02:10:54,734: INFO: common]: created directory at: artifacts/callbacks
+[2021-12-12 02:10:54,746: INFO: callbacks]: Saved tensorboard callback to artifacts/callbacks/tensorboard_cb.cb
+[2021-12-12 02:10:54,761: INFO: callbacks]: Saved checkpoint callback to artifacts/callbacks/checkpoint_cb.cb
+[2021-12-12 02:10:54,761: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 completed!<<<<<
+
+[2021-12-12 02:12:42,019: INFO: stage_03_prepare_callbacks]: 
+********************
+[2021-12-12 02:12:42,019: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 started <<<<<
+[2021-12-12 02:12:42,024: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:12:42,032: INFO: common]: created directory at: artifacts/tensorboard_log_dir
+[2021-12-12 02:12:42,037: INFO: common]: created directory at: artifacts/checkpoints
+[2021-12-12 02:12:42,043: INFO: common]: created directory at: artifacts/callbacks
+[2021-12-12 02:12:42,055: INFO: callbacks]: Saved tensorboard callback to artifacts/callbacks/tensorboard_cb.cb
+[2021-12-12 02:12:42,064: INFO: callbacks]: Saved checkpoint callback to artifacts/callbacks/checkpoint_cb.cb
+[2021-12-12 02:12:42,064: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 completed!<<<<<
+
+[2021-12-12 02:14:05,727: INFO: stage_02_prepare_model]: 
+********************
+[2021-12-12 02:14:05,728: INFO: stage_02_prepare_model]: >>>>> stage 02 started <<<<<
+[2021-12-12 02:14:05,735: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:14:05,740: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 02:14:05,744: INFO: common]: created directory at: artifacts/base_model
+[2021-12-12 02:14:07,239: INFO: model]: custom model is saved at artifacts/base_model/base_model.h5
+[2021-12-12 02:14:07,239: INFO: model]: custom model is compiled and ready to be trained
+[2021-12-12 02:14:07,250: INFO: stage_02_prepare_model]: full model summary: 
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d (Conv2D)             (None, 28, 28, 64)        640       
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 14, 14, 64)       0         
+ )                                                               
+                                                                 
+ conv2d_1 (Conv2D)           (None, 14, 14, 128)       73856     
+                                                                 
+ conv2d_2 (Conv2D)           (None, 14, 14, 128)       147584    
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 7, 7, 128)        0         
+ 2D)                                                             
+                                                                 
+ conv2d_3 (Conv2D)           (None, 7, 7, 256)         295168    
+                                                                 
+ conv2d_4 (Conv2D)           (None, 7, 7, 256)         590080    
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 3, 3, 256)        0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 2304)              0         
+                                                                 
+ dense (Dense)               (None, 128)               295040    
+                                                                 
+ dropout (Dropout)           (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_1 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_2 (Dense)             (None, 10)                650       
+                                                                 
+=================================================================
+Total params: 1,411,274
+Trainable params: 1,411,274
+Non-trainable params: 0
+_________________________________________________________________
+
+[2021-12-12 02:14:07,351: INFO: stage_02_prepare_model]: >>>>> stage 02 completed!<<<<<
+
+[2021-12-12 02:15:09,200: INFO: stage_03_prepare_callbacks]: 
+********************
+[2021-12-12 02:15:09,201: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 started <<<<<
+[2021-12-12 02:15:09,207: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:15:09,215: INFO: common]: created directory at: artifacts/tensorboard_log_dir
+[2021-12-12 02:15:09,222: INFO: common]: created directory at: artifacts/checkpoints
+[2021-12-12 02:15:09,230: INFO: common]: created directory at: artifacts/callbacks
+[2021-12-12 02:15:09,238: INFO: callbacks]: Saved tensorboard callback to artifacts/callbacks/tensorboard_cb.cb
+[2021-12-12 02:15:09,247: INFO: callbacks]: Saved checkpoint callback to artifacts/callbacks/checkpoint_cb.cb
+[2021-12-12 02:15:09,247: INFO: stage_03_prepare_callbacks]: >>>>> stage 03 completed!<<<<<
+
+[2021-12-12 02:17:02,778: INFO: stage_04_train_model]: 
+********************
+[2021-12-12 02:17:02,778: INFO: stage_04_train_model]: >>>>> stage 04 started <<<<<
+[2021-12-12 02:17:02,783: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:17:02,787: INFO: common]: yaml file: params.yaml loaded successfully
+[2021-12-12 02:17:02,790: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 02:17:04,322: INFO: model]: untrained model is read from artifacts/base_model/base_model.h5
+[2021-12-12 02:17:04,333: INFO: callbacks]: saved callbacks are loaded from artifacts/callbacks
+[2021-12-12 02:17:07,033: INFO: data_management]: data is loaded.
+[2021-12-12 02:17:07,509: INFO: data_management]: data is loaded.
+[2021-12-12 02:17:07,698: INFO: data_management]: data is preprocessed.
+[2021-12-12 02:17:07,701: INFO: data_management]: data is one-hot encoded.
+[2021-12-12 02:54:43,788: INFO: stage_04_train_model]: training completed
+[2021-12-12 02:54:43,793: INFO: common]: created directory at: artifacts/trained_model
+[2021-12-12 02:54:44,001: INFO: stage_04_train_model]: trained model is saved at: artifacts/trained_model/trained_model.h5
+[2021-12-12 02:54:44,003: INFO: stage_04_train_model]: >>>>> stage 04 completed!<<<<<
+
+[2021-12-12 02:55:47,867: INFO: stage_01_load_save]: 
+********************
+[2021-12-12 02:55:47,867: INFO: stage_01_load_save]: >>>>> stage 01 started <<<<<
+[2021-12-12 02:55:47,876: INFO: common]: yaml file: configs/config.yaml loaded successfully
+[2021-12-12 02:55:47,880: INFO: common]: created directory at: artifacts/data
+[2021-12-12 02:55:55,400: INFO: stage_01_load_save]: >>>>> stage 01 completed!<<<<<
+

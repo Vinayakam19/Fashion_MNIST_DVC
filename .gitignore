@@ -138,8 +138,8 @@ dmypy.json
 configs/secrets.yaml
 
 # Ignore the downloaded data files
-artifacts/data
-artifacts/.gitkeep
+data/
+.gitkeep
 
 
 

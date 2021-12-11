@@ -6,6 +6,7 @@ numpy
 PyYAML
 tensorflow-gpu
 matplotlib
+joblib
 
 
 ### local packages -

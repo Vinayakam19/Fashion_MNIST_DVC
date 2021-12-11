@@ -1,8 +1,6 @@
 import argparse
 import os
-import gzip
 import io
-import numpy as np
 import logging
 from src.utils.common import read_yaml, create_directories
 from src.utils.model import get_prepare_model
@@ -32,8 +30,6 @@ def prepare_base_model(config_path, params_path):
 
     base_model_path = os.path.join(base_model_dir_path, base_model_name)
 
-    #model = get_VGG_16_model(input_shape=params["IMAGE_SIZE"], model_path=base_model_path)
-
     full_model = get_prepare_model(
         CLASSES=params["CLASSES"],
         learning_rate=params["LEARNING_RATE"],
@@ -44,12 +40,12 @@ def prepare_base_model(config_path, params_path):
         num_neurons=params["NUM_NEURONS"],
         model_path=base_model_path
     )
-
+    '''
     update_base_model_path = os.path.join(
         base_model_dir_path,
         artifacts["UPDATED_BASE_MODEL_NAME"]
     )
-
+    '''
     def _log_model_summary(full_model):
         with io.StringIO() as stream:
             full_model.summary(print_fn=lambda x: stream.write(f"{x}\n"))
@@ -58,7 +54,7 @@ def prepare_base_model(config_path, params_path):
 
     logging.info(f"full model summary: \n{_log_model_summary(full_model)}")
 
-    full_model.save(update_base_model_path)
+    full_model.save(base_model_path)
 
 
 if __name__ == '__main__':

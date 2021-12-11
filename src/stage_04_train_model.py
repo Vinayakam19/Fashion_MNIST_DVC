@@ -1,5 +1,5 @@
 from src.utils.common import read_yaml, create_directories
-from src.utils.model import load_full_model, get_unique_path_to_save_model
+from src.utils.model import load_full_model
 from src.utils.callbacks import get_callbacks
 from src.utils.data_management import load_data, preprocess_data, one_hot_encode
 import argparse
@@ -25,7 +25,7 @@ def train_model(config_path, params_path):
 
     create_directories([train_model_dir_path])
 
-    untrained_full_model_path = os.path.join(artifacts_dir, artifacts["BASE_MODEL_DIR"], artifacts["UPDATED_BASE_MODEL_NAME"])
+    untrained_full_model_path = os.path.join(artifacts_dir, artifacts["BASE_MODEL_DIR"], artifacts["BASE_MODEL_NAME"])
 
     model = load_full_model(untrained_full_model_path)
 
@@ -59,7 +59,8 @@ def train_model(config_path, params_path):
     trained_model_dir = os.path.join(artifacts_dir, artifacts["TRAINED_MODEL_DIR"])
     create_directories([trained_model_dir])
 
-    model_file_path = get_unique_path_to_save_model(trained_model_dir)
+    #model_file_path = get_unique_path_to_save_model(trained_model_dir)
+    model_file_path = os.path.join(trained_model_dir, artifacts["MODEL_NAME"])
     model.save(model_file_path)
     logging.info(f"trained model is saved at: {model_file_path}")
     

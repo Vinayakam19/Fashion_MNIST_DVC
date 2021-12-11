@@ -1,1 +1,38 @@
 # add ci-cd steps here
+name: Fashion_MNIST_DVC 
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: iterative/setup-cml@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.7"
+
+      - name: cml
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          TB_CREDENTIALS: ${{ secrets.TB_CRED }}
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+          dvc repro
+
+          echo "# REPORTS" >> report.md
+          echo "## metrics" >> report.md
+          cat scores.json >> report.md
+
+          cml-tensorboard-dev \
+            --logdir logs \
+            --name "Go to tensorboard" \
+            --md >> report.md
+
+          dvc metrics show >> report.md
+          cml-send-comment report.md 

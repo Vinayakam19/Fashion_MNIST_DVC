@@ -1,0 +1,149 @@
+schema: '2.0'
+stages:
+  prepare_base_model:
+    cmd: python src/stage_02_prepare_model.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - path: configs/config.yaml
+      md5: ed105d5273635625ea9c58038b98bd2b
+      size: 520
+    - path: src/stage_02_prepare_model.py
+      md5: 2bb05e634c12421cd68827e7049aa660
+      size: 2391
+    - path: src/utils/common.py
+      md5: 0749b9b486cbb28e784477890e3713a3
+      size: 1050
+    - path: src/utils/model.py
+      md5: 7718ffe4196983da36adfca791a208df
+      size: 1861
+    params:
+      params.yaml:
+        CLASSES: 10
+        DROPOUT_RATE: 0.5
+        IMAGE_SIZE:
+        - 28
+        - 28
+        - 1
+        KERNEL_SIZE: 3
+        LEARNING_RATE: 0.001
+        NUM_FILTERS: 64
+        NUM_NEURONS: 128
+    outs:
+    - path: artifacts/base_model/base_model.h5
+      md5: 43be4a236b58d2be907458c2f3897163
+      size: 5687296
+      isexec: true
+  prepare_callbacks:
+    cmd: python src/stage_03_prepare_callbacks.py --config=configs/config.yaml
+    deps:
+    - path: configs/config.yaml
+      md5: ed105d5273635625ea9c58038b98bd2b
+      size: 520
+    - path: src/stage_03_prepare_callbacks.py
+      md5: 1d11abe9e04e24ded3d7292f5958b537
+      size: 1741
+    - path: src/utils/callbacks.py
+      md5: f2720c6ae2f9d6698e20e9a8d284f614
+      size: 1671
+    - path: src/utils/common.py
+      md5: 0749b9b486cbb28e784477890e3713a3
+      size: 1050
+    outs:
+    - path: artifacts/callbacks/checkpoint_cb.cb
+      md5: b0566bec1f89fe6146dc5b0c85d1a6ee
+      size: 685
+      isexec: true
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: a28f9629532f72b7206cf0b90e2bbeaa
+      size: 664
+      isexec: true
+  train:
+    cmd: python src/stage_04_train_model.py --config=configs/config.yaml --params=params.yaml
+    deps:
+    - path: artifacts/base_model/base_model.h5
+      md5: 43be4a236b58d2be907458c2f3897163
+      size: 5687296
+    - path: artifacts/callbacks/checkpoint_cb.cb
+      md5: b0566bec1f89fe6146dc5b0c85d1a6ee
+      size: 685
+    - path: artifacts/callbacks/tensorboard_cb.cb
+      md5: a28f9629532f72b7206cf0b90e2bbeaa
+      size: 664
+    - path: configs/config.yaml
+      md5: ed105d5273635625ea9c58038b98bd2b
+      size: 520
+    - path: src/stage_04_train_model.py
+      md5: b9f9ef9b2da9f19409b208b687f191f0
+      size: 2975
+    - path: src/utils/callbacks.py
+      md5: f2720c6ae2f9d6698e20e9a8d284f614
+      size: 1671
+    - path: src/utils/common.py
+      md5: 0749b9b486cbb28e784477890e3713a3
+      size: 1050
+    - path: src/utils/data_management.py
+      md5: 9bd49e0ecc09d8eb7071e6ddaec5d596
+      size: 2790
+    - path: src/utils/model.py
+      md5: 7718ffe4196983da36adfca791a208df
+      size: 1861
+    params:
+      params.yaml:
+        BATCH_SIZE: 64
+        CLASSES: 10
+        EPOCHS: 10
+    outs:
+    - path: artifacts/trained_model/trained_model.h5
+      md5: 8a792dc0b05e0097fce0c0e7336f5ab3
+      size: 17013456
+      isexec: true
+  load_data:
+    cmd: python src/stage_01_load_save.py --config=configs/config.yaml
+    deps:
+    - path: configs/config.yaml
+      md5: ed105d5273635625ea9c58038b98bd2b
+      size: 520
+    - path: src/stage_01_load_save.py
+      md5: 19439793338f466a5480c40492da3448
+      size: 2211
+    - path: src/utils/common.py
+      md5: 0749b9b486cbb28e784477890e3713a3
+      size: 1050
+    outs:
+    - path: artifacts/data/t10k-images-idx3-ubyte.gz
+      md5: bef4ecab320f06d8554ea6380940ec79
+      size: 4422102
+      isexec: true
+    - path: artifacts/data/t10k-labels-idx1-ubyte.gz
+      md5: bb300cfdad3c16e7a12a480ee83cd310
+      size: 5148
+      isexec: true
+    - path: artifacts/data/train-images-idx3-ubyte.gz
+      md5: 8d4fb7e6c68d591d4c3dfef9ec88bf0d
+      size: 26421880
+      isexec: true
+    - path: artifacts/data/train-labels-idx1-ubyte.gz
+      md5: 25c81989df183df01b3e8a0aad5dffbe
+      size: 29515
+      isexec: true
+  evaluate:
+    cmd: python src/stage_05_evaluate_model.py --config=configs/config.yaml
+    deps:
+    - path: artifacts/trained_model/trained_model.h5
+      md5: 8a792dc0b05e0097fce0c0e7336f5ab3
+      size: 17013456
+    - path: configs/config.yaml
+      md5: ed105d5273635625ea9c58038b98bd2b
+      size: 520
+    - path: src/stage_05_evaluate_model.py
+      md5: 44922b9bef7ceb7fd754a877fd2727ca
+      size: 2979
+    - path: src/utils/common.py
+      md5: 0749b9b486cbb28e784477890e3713a3
+      size: 1050
+    - path: src/utils/data_management.py
+      md5: 9bd49e0ecc09d8eb7071e6ddaec5d596
+      size: 2790
+    outs:
+    - path: scores.json
+      md5: a333ed4679d7c3b4c80c0a9903b82270
+      size: 26

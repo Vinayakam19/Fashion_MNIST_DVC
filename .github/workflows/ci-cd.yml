@@ -35,7 +35,7 @@ jobs:
           cat scores.json >> report.md
 
           cml-tensorboard-dev \
-            --logdir logs \
+            --logdir artifacts/tensorboard_log_dir \
             --name "Go to tensorboard" \
             --md >> report.md
 

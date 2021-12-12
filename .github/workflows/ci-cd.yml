@@ -26,6 +26,7 @@ jobs:
           git rm -r --cached 'artifacts/base_model/base_model.h5'
           git rm -r --cached 'artifacts/callbacks/checkpoint_cb.cb'
           git rm -r --cached 'artifacts/callbacks/tensorboard_cb.cb'
+          git rm -r --cached 'artifacts/trained_model/trained_model.h5'
 
           dvc repro
 

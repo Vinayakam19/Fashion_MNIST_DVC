@@ -49,6 +49,10 @@ stages:
       - src/utils/callbacks.py
       - src/utils/data_management.py
       - configs/config.yaml
+      - artifacts/data/t10k-images-idx3-ubyte.gz
+      - artifacts/data/t10k-labels-idx1-ubyte.gz
+      - artifacts/data/train-images-idx3-ubyte.gz
+      - artifacts/data/train-labels-idx1-ubyte.gz
       - artifacts/base_model/base_model.h5
       - artifacts/callbacks/checkpoint_cb.cb
       - artifacts/callbacks/tensorboard_cb.cb

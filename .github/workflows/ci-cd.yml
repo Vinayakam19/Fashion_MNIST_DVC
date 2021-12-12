@@ -18,7 +18,7 @@ jobs:
       - name: cml
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-          TB_CREDENTIALS: ${{ secrets.TB_CRED }}
+          TB_CREDENTIALS: ${{ secrets.TB_CREDENTIALS }}
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt

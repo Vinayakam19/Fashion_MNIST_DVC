@@ -36,8 +36,19 @@ dvc init
 dvc repro
 ```
 
+7. View the results of the model using DVC interactive studio
+![image](https://user-images.githubusercontent.com/45694329/145950224-e3142fac-6487-4ffd-92d6-ac5b41eea4a9.png)
+
+
 7. View the ML pipeline setup using the command
 ```bash
 dvc dag
 ```
 ![ML-Pipeline-FMNIST](https://user-images.githubusercontent.com/45694329/145949088-dc9c5937-4fee-4980-893f-0c09d2b26d47.png)
+
+Note : 
+1. dvc needs to be installed first before running dvc repro. dvc can be installed using `pip install dvc`
+2. Experiment results can be viewed in the Interactive studio using the link (https://studio.iterative.ai)
+3. Using Continous Machine Learning (CML) CI-CD pipelines can be created in the github
+
+

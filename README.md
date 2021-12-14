@@ -40,3 +40,4 @@ dvc repro
 ```bash
 dvc dag
 ```
+![ML-Pipeline-FMNIST](https://user-images.githubusercontent.com/45694329/145949088-dc9c5937-4fee-4980-893f-0c09d2b26d47.png)

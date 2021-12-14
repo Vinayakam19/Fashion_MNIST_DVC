@@ -49,6 +49,6 @@ dvc dag
 Note : 
 1. dvc needs to be installed first before running dvc repro. dvc can be installed using `pip install dvc`
 2. Experiment results can be viewed in the Interactive studio using the link (https://studio.iterative.ai)
-3. Using Continous Machine Learning (CML) CI-CD pipelines can be created in the github
+3. Using Continous Machine Learning (CML) CI-CD pipelines can be created in the github (https://github.com/iterative/cml#getting-started)
 
 

@@ -1,17 +1,20 @@
 # dvc-project-template
 DVC project template
 
-## STEPS -
 
-### STEP 01- Create a repository by using template repository
+# About the data set
+Fashion-MNIST is a dataset of Zalando's article images—consisting of a training set of 60,000 examples and a test set of 10,000 examples. Each example is a 28x28 grayscale image, associated with a label from 10 classes. Zalando intends Fashion-MNIST to serve as a direct drop-in replacement for the original MNIST dataset for benchmarking machine learning algorithms. It shares the same image size and structure of training and testing splits.
 
-### STEP 02- Clone the new repository
+Ref: https://www.kaggle.com/zalando-research/fashionmnist
 
-### STEP 03- Create a conda environment after opening the repository in VSCODE
+## Steps -
+
+1. Create a conda environment using VSCode first in your respective directory/ you can clone this repository itself.
 
 ```bash
 conda create --prefix ./env python=3.7 -y
 ```
+2. Activate the conda environment
 
 ```bash
 conda activate ./env
@@ -21,14 +24,23 @@ OR
 source activate ./env
 ```
 
-### STEP 04- install the requirements
+
+4. install the requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### STEP 05- initialize the dvc project
+5. initialize the dvc project
 ```bash
 dvc init
 ```
 
-### STEP 06- commit and push the changes to the remote repository
+6. Run the ML pipeline using the command
+```bash
+dvc repro
+```
+
+7. View the ML pipeline setup using the command
+```bash
+dvc dag
+```

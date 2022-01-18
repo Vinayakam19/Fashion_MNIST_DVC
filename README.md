@@ -1,8 +1,6 @@
 # Aim of this small POC
 
-The aim of the small POC is to create an end to end machine learning pipeline for for classifying the Fashion MNIST images using DVC (Data version control) framework and then deploy the whole ML Pipeline using Github actions as CI-CD pipeline.
-
-
+The aim of the small POC is to create an end to end machine learning pipeline for classifying the Fashion MNIST images using DVC (Data version control) framework and then deploy the whole ML Pipeline using Github actions as CI-CD pipeline. Additional goal is to get an understanding of how ML pipelines work using state of the art framework like DVC and view the results of the model on DVC studio. This POC can be further extended to deploy the ML pipeline on Amazon AWS.
 
 
 # About the data set
